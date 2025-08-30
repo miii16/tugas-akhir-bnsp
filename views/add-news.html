@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Tambah Berita - SMKN 2 Bandung</title>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+<style>
+  * {margin:0; padding:0; box-sizing:border-box; font-family:'Poppins', sans-serif;}
+  body {background:#fdfdfd; color:#222;}
+
+  /* Navbar */
+  nav {
+    background:#fff;
+    box-shadow:0 3px 10px rgba(0,0,0,0.08);
+    padding:15px 40px;
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+    position:sticky;
+    top:0;
+    z-index:1000;
+  }
+  nav.scrolled {background:#d32f2f; color:white;}
+  nav .logo {font-weight:700; color:#d32f2f;}
+  nav.scrolled .logo {color:white;}
+  nav ul {list-style:none; display:flex; gap:25px;}
+  nav ul li a {text-decoration:none; color:#222; font-weight:500; transition:.3s;}
+  nav ul li a:hover {color:#d32f2f;}
+  nav.scrolled ul li a {color:white;}
+  nav.scrolled ul li a:hover {color:#ffeb3b;}
+  .menu-toggle {display:none; font-size:1.5rem; cursor:pointer;}
+  @media(max-width:768px){
+    nav ul {display:none; flex-direction:column; position:absolute; top:70px; right:0; background:#fff; width:200px; box-shadow:0 5px 15px rgba(0,0,0,0.2); padding:20px;}
+    nav ul.active {display:flex;}
+    nav ul li {margin:10px 0;}
+    .menu-toggle {display:block;}
+  }
+  .actions a {background:#d32f2f; color:white; padding:8px 18px; border-radius:30px; text-decoration:none; font-weight:600; transition:.3s;}
+  .actions a:hover {background:#ffeb3b; color:#000;}
+
+  /* Content */
+  .section {padding:80px 40px; max-width:600px; margin: auto;}
+  .section h2 {font-size:2rem; margin-bottom:30px; color:#d32f2f; text-align:center;}
+  form {display:flex; flex-direction:column; gap:15px; background:white; padding:30px; border-radius:15px; box-shadow:0 6px 20px rgba(0,0,0,0.15);}
+  input, textarea {padding:12px; border-radius:10px; border:1px solid #ccc; font-size:1rem; width:100%;}
+  button {padding:12px; border-radius:30px; border:none; background:#d32f2f; color:white; font-weight:600; cursor:pointer; transition:.3s;}
+  button:hover {background:#ffeb3b; color:#000;}
+
+  /* Footer */
+  footer {background:#111; color:white; text-align:center; padding:30px 20px; margin-top:40px; font-size:.9rem;}
+  footer span {color:#ffeb3b;}
+</style>
+</head>
+<body>
+
+<!-- Navbar -->
+<nav id="navbar">
+  <div class="logo">SMKN 2 Bandung</div>
+  <ul>
+    <li><a href="index.html">Beranda</a></li>
+    <li><a href="about.html">Tentang</a></li>
+    <li><a href="news.html">Berita</a></li>
+    <li><a href="activities.html">Kegiatan</a></li>
+    <li><a href="contact.html">Kontak</a></li>
+  </ul>
+  <div class="actions">
+    <a href="news.html"><i class="fas fa-arrow-left"></i> Kembali</a>
+    <div class="menu-toggle"><i class="fas fa-bars"></i></div>
+  </div>
+</nav>
+
+<!-- Content Section -->
+<div class="section">
+  <h2>Tambah Berita Baru</h2>
+  <form action="/api/news" method="POST">
+    <input type="text" name="judul" placeholder="Judul Berita" required>
+    <textarea name="konten" rows="6" placeholder="Isi Berita" required></textarea>
+    <button type="submit"><i class="fas fa-plus"></i> Tambah Berita</button>
+  </form>
+</div>
+
+<!-- Footer -->
+<footer>
+  &copy; 2025 <span>SMKN 2 Bandung</span> | Semua Hak Dilindungi
+</footer>
+
+<script>
+  // Navbar scroll effect
+  const nav = document.getElementById('navbar');
+  window.addEventListener('scroll', () => {
+    if(window.scrollY > 50){ nav.classList.add('scrolled'); } 
+    else { nav.classList.remove('scrolled'); }
+  });
+
+  // Responsive navbar
+  const menuToggle = document.querySelector('.menu-toggle');
+  const navLinks = document.querySelector('nav ul');
+  menuToggle.addEventListener('click', () => { navLinks.classList.toggle('active'); });
+</script>
+
+</body>
+</html>

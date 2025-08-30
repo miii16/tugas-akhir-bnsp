@@ -1,0 +1,154 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Berita - SMKN 2 Bandung</title>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+<style>
+  * {margin:0; padding:0; box-sizing:border-box; font-family:'Poppins', sans-serif;}
+  body {background:#fdfdfd; color:#222; scroll-behavior:smooth;}
+
+  /* Navbar */
+  nav {
+    background:#fff;
+    box-shadow:0 3px 10px rgba(0,0,0,0.08);
+    padding:15px 40px;
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+    position:sticky;
+    top:0;
+    z-index:1000;
+    transition:.3s;
+  }
+  nav.scrolled {background:#d32f2f; color:white;}
+  nav .logo {display:flex; align-items:center; gap:10px; font-size:1.3rem; font-weight:700; color:#d32f2f; transition:.3s;}
+  nav.scrolled .logo {color:white;}
+  nav ul {list-style:none; display:flex; gap:25px;}
+  nav ul li a {text-decoration:none; color:#222; font-weight:500; transition:.3s; position:relative;}
+  nav ul li a::after {content:""; position:absolute; width:0; height:2px; left:0; bottom:-5px; background:#ffeb3b; transition:.3s;}
+  nav ul li a:hover {color:#d32f2f;}
+  nav ul li a:hover::after {width:100%;}
+  nav.scrolled ul li a {color:white;}
+  nav.scrolled ul li a:hover {color:#ffeb3b;}
+
+  /* Responsive Navbar */
+  .menu-toggle {display:none; font-size:1.5rem; cursor:pointer;}
+  @media(max-width:768px){
+    nav ul {display:none; flex-direction:column; position:absolute; top:70px; right:0; background:#fff; width:200px; box-shadow:0 5px 15px rgba(0,0,0,0.2); padding:20px;}
+    nav ul.active {display:flex;}
+    nav ul li {margin:10px 0;}
+    .menu-toggle {display:block;}
+  }
+
+  .actions {display:flex; gap:15px; align-items:center;}
+  .actions .login, .actions .add-news {background:#d32f2f; color:white; padding:8px 18px; border-radius:30px; text-decoration:none; font-weight:600; transition:.3s;}
+  .actions .login:hover, .actions .add-news:hover {background:#ffeb3b; color:#000; transform:translateY(-3px);}
+
+  /* Section News */
+  .section {padding:80px 40px; max-width:1100px; margin:auto;}
+  .section h2 {font-size:2.5rem; margin-bottom:40px; color:#d32f2f; font-weight:700; text-align:center; position:relative;}
+  .section h2::after {content:""; display:block; width:80px; height:4px; background:#ffeb3b; margin:10px auto 0; border-radius:2px;}
+
+  .news-cards {display:grid; grid-template-columns:repeat(auto-fit,minmax(280px,1fr)); gap:25px;}
+  .news-card {background:white; border-radius:15px; padding:25px; text-align:center; box-shadow:0 6px 20px rgba(0,0,0,0.15); transition:.4s;}
+  .news-card:hover {transform:translateY(-8px); box-shadow:0 12px 30px rgba(0,0,0,0.25);}
+  .news-card i {font-size:3rem; color:#d32f2f; margin-bottom:15px;}
+  .news-card h3 {font-size:1.2rem; margin-bottom:10px; color:#000;}
+  .news-card p {font-size:.95rem; color:#555; line-height:1.5;}
+  .news-card a {display:inline-block; margin-top:10px; color:#d32f2f; font-weight:600; text-decoration:none; transition:.3s;}
+  .news-card a:hover {color:#ffeb3b;}
+
+  /* Footer */
+  footer {background:#111; color:white; text-align:center; padding:30px 20px; margin-top:60px; font-size:.9rem;}
+  footer span {color:#ffeb3b;}
+  .socials {margin-top:10px;}
+  .socials a {color:white; margin:0 10px; font-size:1.2rem; transition:.3s;}
+  .socials a:hover {color:#ffeb3b;}
+</style>
+</head>
+<body>
+
+<!-- Navbar -->
+<nav id="navbar">
+  <div class="logo"><img src="https://via.placeholder.com/40" alt="logo"> SMKN 2 Bandung</div>
+  <ul>
+    <li><a href="index.html">Beranda</a></li>
+    <li><a href="about.html">Tentang</a></li>
+    <li><a href="news.html">Berita</a></li>
+    <li><a href="contact.html">Kontak</a></li>
+  </ul>
+  <div class="actions">
+    <!-- Hanya tampil jika user login, bisa di-handle di backend -->
+    <a href="add-news.html" class="add-news">Tambah Berita</a>
+    <a href="login.html" class="login">Login</a>
+    <div class="menu-toggle"><i class="fas fa-bars"></i></div>
+  </div>
+</nav>
+
+<!-- News Section -->
+<div class="section">
+  <h2>Berita Terbaru</h2>
+  <div class="news-cards" id="news-container">
+    <p style="text-align:center; color:#555;">Memuat berita...</p>
+  </div>
+</div>
+
+<!-- Footer -->
+<footer>
+  <p>&copy; 2025 <span>SMKN 2 Bandung</span> | Semua Hak Dilindungi</p>
+  <div class="socials">
+    <a href="#"><i class="fab fa-facebook"></i></a>
+    <a href="#"><i class="fab fa-instagram"></i></a>
+    <a href="#"><i class="fab fa-twitter"></i></a>
+    <a href="#"><i class="fab fa-youtube"></i></a>
+  </div>
+</footer>
+
+<script>
+  // Navbar scroll effect
+  const nav = document.getElementById('navbar');
+  window.addEventListener('scroll', () => {
+    if(window.scrollY > 50){ nav.classList.add('scrolled'); } 
+    else { nav.classList.remove('scrolled'); }
+  });
+
+  // Responsive navbar
+  const menuToggle = document.querySelector('.menu-toggle');
+  const navLinks = document.querySelector('nav ul');
+  menuToggle.addEventListener('click', () => { navLinks.classList.toggle('active'); });
+
+  // Load berita dari backend
+  const newsContainer = document.getElementById('news-container');
+
+  async function loadNews() {
+    try {
+      const res = await fetch('/api/news');
+      if (!res.ok) throw new Error('Gagal memuat data');
+      const news = await res.json();
+
+      if(news.length === 0){
+        newsContainer.innerHTML = '<p style="text-align:center; color:#555;">Belum ada berita.</p>';
+        return;
+      }
+
+      newsContainer.innerHTML = news.map(item => `
+        <div class="news-card">
+          <i class="fas fa-newspaper"></i>
+          <h3>${item.judul}</h3>
+          <p>${item.konten}</p>
+          <a href="#">Baca Selengkapnya <i class="fas fa-arrow-right"></i></a>
+        </div>
+      `).join('');
+    } catch (err) {
+      newsContainer.innerHTML = '<p style="text-align:center; color:red;">Gagal memuat berita. Coba lagi nanti.</p>';
+      console.error(err);
+    }
+  }
+
+  loadNews();
+</script>
+
+</body>
+</html>

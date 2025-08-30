@@ -1,0 +1,334 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>SMKN 2 Bandung</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+  <style>
+    * {margin:0; padding:0; box-sizing:border-box; font-family:'Poppins', sans-serif;}
+    body {background:#fdfdfd; color:#222; scroll-behavior:smooth;}
+
+    /* Navbar */
+    nav {
+      background:#fff;
+      box-shadow:0 3px 10px rgba(0,0,0,0.08);
+      padding:15px 40px;
+      display:flex;
+      justify-content:space-between;
+      align-items:center;
+      position:sticky;
+      top:0;
+      z-index:1000;
+      transition:.3s;
+    }
+    nav.scrolled {background:#d32f2f; color:white;}
+    nav .logo {
+      display:flex;
+      align-items:center;
+      gap:10px;
+      font-size:1.3rem;
+      font-weight:700;
+      color:#d32f2f;
+      transition:.3s;
+    }
+    nav.scrolled .logo {color:white;}
+    nav ul {
+      list-style:none;
+      display:flex;
+      gap:25px;
+    }
+    nav ul li a {
+      text-decoration:none;
+      color:#222;
+      font-weight:500;
+      transition:.3s;
+      position:relative;
+    }
+    nav ul li a::after {
+      content:"";
+      position:absolute;
+      width:0;
+      height:2px;
+      left:0;
+      bottom:-5px;
+      background:#ffeb3b;
+      transition:.3s;
+    }
+    nav ul li a:hover {color:#d32f2f;}
+    nav ul li a:hover::after {width:100%;}
+    nav.scrolled ul li a {color:white;}
+    nav.scrolled ul li a:hover {color:#ffeb3b;}
+
+    /* Responsive Navbar */
+    .menu-toggle {display:none; font-size:1.5rem; cursor:pointer;}
+    @media(max-width:768px){
+      nav ul {display:none; flex-direction:column; position:absolute; top:70px; right:0; background:#fff; width:200px; box-shadow:0 5px 15px rgba(0,0,0,0.2); padding:20px;}
+      nav ul.active {display:flex;}
+      nav ul li {margin:10px 0;}
+      .menu-toggle {display:block;}
+    }
+
+    .actions {
+      display:flex;
+      gap:15px;
+      align-items:center;
+    }
+    .actions .search i {
+      font-size:1.2rem;
+      cursor:pointer;
+      transition:.3s;
+    }
+    .actions .search i:hover {color:#d32f2f; transform:scale(1.2);}
+    .actions .login {
+      background:#d32f2f;
+      color:white;
+      padding:8px 18px;
+      border-radius:30px;
+      text-decoration:none;
+      font-weight:600;
+      transition:.3s;
+    }
+    .actions .login:hover {background:#ffeb3b; color:#000; transform:translateY(-3px);}
+
+    /* Hero Section */
+    .hero {
+      background:linear-gradient(rgba(0,0,0,.6), rgba(0,0,0,.6)), url('https://images.unsplash.com/photo-1523240795612-9a054b0db644') center/cover no-repeat;
+      color:white;
+      text-align:center;
+      padding:120px 20px;
+      animation:fadeIn 1.2s ease;
+    }
+    .hero h1 {font-size:3rem; font-weight:800; margin-bottom:15px;}
+    .hero p {font-size:1.2rem; margin-bottom:30px;}
+    .typing {border-right:2px solid #ffeb3b; display:inline; white-space:nowrap; overflow:hidden; animation:typing 5s steps(40, end) infinite alternate;}
+    @keyframes typing {from{width:0} to{width:100%}}
+    .hero a {
+      background:#ffeb3b;
+      color:#000;
+      padding:12px 25px;
+      border-radius:30px;
+      text-decoration:none;
+      font-weight:700;
+      transition:.3s;
+    }
+    .hero a:hover {background:white; color:#d32f2f; box-shadow:0 5px 15px rgba(0,0,0,0.2);}
+
+    /* Menu Cards */
+    .menu-section {
+      display:flex;
+      justify-content:center;
+      flex-wrap:wrap;
+      gap:25px;
+      padding:40px 20px;
+      background:#fff;
+      box-shadow:0 2px 10px rgba(0,0,0,0.08);
+    }
+    .menu-card {
+      background:white;
+      border-radius:15px;
+      padding:25px;
+      text-align:center;
+      width:150px;
+      box-shadow:0 4px 15px rgba(0,0,0,0.1);
+      transition:.4s;
+      cursor:pointer;
+    }
+    .menu-card:hover {
+      transform:translateY(-8px) scale(1.05);
+      background:#d32f2f;
+      color:white;
+    }
+    .menu-card i {
+      font-size:2rem;
+      margin-bottom:12px;
+      color:#d32f2f;
+      transition:.3s;
+    }
+    .menu-card:hover i {color:#ffeb3b;}
+    .menu-card h4 {font-size:1rem; font-weight:600; margin-bottom:8px;}
+    .menu-card p {font-size:.9rem; color:#555;}
+
+    /* Content Section */
+    .content {
+      padding:80px 40px;
+      text-align:center;
+      animation:fadeUp 1s ease;
+    }
+    .content h2 {
+      font-size:2.5rem;
+      margin-bottom:40px;
+      color:#d32f2f;
+      font-weight:700;
+      position:relative;
+    }
+    .content h2::after {
+      content:"";
+      display:block;
+      width:80px;
+      height:4px;
+      background:#ffeb3b;
+      margin:10px auto 0;
+      border-radius:2px;
+    }
+    .cards {
+      display:grid;
+      grid-template-columns:repeat(auto-fit,minmax(280px,1fr));
+      gap:25px;
+    }
+    .card {
+      background:rgba(255,255,255,0.9);
+      backdrop-filter:blur(10px);
+      border-radius:15px;
+      overflow:hidden;
+      box-shadow:0 6px 20px rgba(0,0,0,0.15);
+      transition:.4s;
+      position:relative;
+    }
+    .card:hover {
+      transform:translateY(-10px);
+      box-shadow:0 12px 30px rgba(0,0,0,0.25);
+    }
+    .card-body {
+      padding:20px;
+      text-align:left;
+    }
+    .card-body h3 {
+      font-size:1.2rem;
+      margin-bottom:10px;
+      color:#000;
+    }
+    .card-body p {
+      font-size:.95rem;
+      color:#444;
+      line-height:1.5;
+    }
+
+    /* Footer */
+    footer {
+      background:#111;
+      color:white;
+      text-align:center;
+      padding:30px 20px;
+      margin-top:60px;
+      font-size:.9rem;
+    }
+    footer span {color:#ffeb3b;}
+    .socials {margin-top:10px;}
+    .socials a {
+      color:white; margin:0 10px; font-size:1.2rem; transition:.3s;
+    }
+    .socials a:hover {color:#ffeb3b;}
+
+    /* Animations */
+    @keyframes fadeIn {from{opacity:0;} to{opacity:1;}}
+    @keyframes fadeUp {from{opacity:0; transform:translateY(20px);} to{opacity:1; transform:translateY(0);}}
+  </style>
+</head>
+<body>
+
+  <!-- Navbar -->
+  <nav id="navbar">
+    <div class="logo"><img src="https://via.placeholder.com/40" alt="logo"> SMKN 2 Bandung</div>
+    <ul>
+      <li><a href="index.html">Beranda</a></li>
+      <li><a href="about.html">Tentang Kami</a></li>
+      <li><a href="activities.html">Kegiatan</a></li>
+      <li><a href="news.html">Berita</a></li>
+      <li><a href="contact.html">Kontak</a></li>
+      
+    </ul>
+    <div class="actions">
+      <div class="search"><i class="fas fa-search"></i></div>
+      <a href="login.html" class="login">Login</a>
+        <a href="regist.html" class="login">register</a>
+
+      <div class="menu-toggle"><i class="fas fa-bars"></i></div>
+    </div>
+  </nav>
+
+  <!-- Hero -->
+  <section class="hero">
+    <h1>Selamat Datang di <br><span class="typing">SMKN 2 Bandung</span></h1>
+    <p>Mencetak generasi unggul, cerdas, dan berkarakter di era modern.</p>
+    <a href="#kegiatan">Lihat Kegiatan</a>
+  </section>
+
+  <!-- Menu Cards Prestasi/Kegiatan -->
+  <div class="menu-section">
+    <div class="menu-card">
+      <i class="fas fa-trophy"></i>
+      <h4>Kejuaraan</h4>
+      <p>Prestasi siswa dalam lomba akademik dan non-akademik.</p>
+    </div>
+    <div class="menu-card">
+      <i class="fas fa-futbol"></i>
+      <h4>Ekstrakurikuler</h4>
+      <p>Kegiatan olahraga, seni, dan teknologi setiap minggu.</p>
+    </div>
+    <div class="menu-card">
+      <i class="fas fa-newspaper"></i>
+      <h4>Berita</h4>
+      <p>Informasi terbaru tentang kegiatan dan prestasi sekolah.</p>
+    </div>
+    <div class="menu-card">
+      <i class="fas fa-calendar-alt"></i>
+      <h4>Agenda</h4>
+      <p>Jadwal kegiatan sekolah yang akan datang.</p>
+    </div>
+  </div>
+
+  <!-- Content Section Prestasi -->
+  <div class="content" id="kegiatan">
+    <h2>Prestasi & Kegiatan</h2>
+    <div class="cards">
+      <div class="card">
+        <div class="card-body">
+          <h3><i class="fas fa-trophy"></i> Juara Futsal 2025</h3>
+          <p>Tim futsal SMKN 2 Bandung meraih juara 1 dalam kompetisi antar sekolah se-Kota Bandung.</p>
+        </div>
+      </div>
+      <div class="card">
+        <div class="card-body">
+          <h3><i class="fas fa-laptop-code"></i> Workshop Teknologi</h3>
+          <p>Siswa jurusan RPL mengikuti workshop AI untuk menambah wawasan tentang perkembangan IT modern.</p>
+        </div>
+      </div>
+      <div class="card">
+        <div class="card-body">
+          <h3><i class="fas fa-users"></i> Kegiatan Ekstrakurikuler</h3>
+          <p>Ekstrakurikuler di SMKN 2 Bandung sangat beragam, mulai dari olahraga, seni, hingga teknologi.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Footer -->
+  <footer id="kontak">
+    <p>&copy; 2025 <span>SMKN 2 Bandung</span> | Semua Hak Dilindungi</p>
+    <div class="socials">
+      <a href="https://www.tiktok.com/@smkn2bandung?_t=ZS-8zIUlJ3EBiX&_r=1"><i class="fab fa-tiktok"></i></a>
+      <a href="https://www.instagram.com/smkn2bandung?utm_source=ig_web_button_share_sheet&igsh=cnVuOWdxeHZlejNo"><i class="fab fa-instagram"></i></a>
+    </div>
+  </footer>
+
+  <script>
+    // Navbar scroll effect
+    const nav = document.getElementById('navbar');
+    window.addEventListener('scroll', () => {
+      if(window.scrollY > 50){
+        nav.classList.add('scrolled');
+      } else {
+        nav.classList.remove('scrolled');
+      }
+    });
+
+    // Responsive navbar
+    const menuToggle = document.querySelector('.menu-toggle');
+    const navLinks = document.querySelector('nav ul');
+    menuToggle.addEventListener('click', () => {
+      navLinks.classList.toggle('active');
+    });
+  </script>
+</body>
+</html>

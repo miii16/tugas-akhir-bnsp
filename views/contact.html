@@ -1,0 +1,183 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Kontak - SMKN 2 Bandung</title>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+<style>
+  * {margin:0; padding:0; box-sizing:border-box; font-family:'Poppins', sans-serif;}
+  body {background:#fdfdfd; color:#222; scroll-behavior:smooth;}
+
+  /* Navbar */
+  nav {
+    background:#fff;
+    box-shadow:0 3px 10px rgba(0,0,0,0.08);
+    padding:15px 40px;
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+    position:sticky;
+    top:0;
+    z-index:1000;
+    transition:.3s;
+  }
+  nav.scrolled {background:#d32f2f; color:white;}
+  nav .logo {display:flex; align-items:center; gap:10px; font-size:1.3rem; font-weight:700; color:#d32f2f; transition:.3s;}
+  nav.scrolled .logo {color:white;}
+  nav ul {list-style:none; display:flex; gap:25px;}
+  nav ul li a {text-decoration:none; color:#222; font-weight:500; transition:.3s; position:relative;}
+  nav ul li a::after {content:""; position:absolute; width:0; height:2px; left:0; bottom:-5px; background:#ffeb3b; transition:.3s;}
+  nav ul li a:hover {color:#d32f2f;}
+  nav ul li a:hover::after {width:100%;}
+  nav.scrolled ul li a {color:white;}
+  nav.scrolled ul li a:hover {color:#ffeb3b;}
+  .menu-toggle {display:none; font-size:1.5rem; cursor:pointer;}
+  @media(max-width:768px){
+    nav ul {display:none; flex-direction:column; position:absolute; top:70px; right:0; background:#fff; width:200px; box-shadow:0 5px 15px rgba(0,0,0,0.2); padding:20px;}
+    nav ul.active {display:flex;}
+    nav ul li {margin:10px 0;}
+    .menu-toggle {display:block;}
+  }
+
+  .actions {display:flex; gap:15px; align-items:center;}
+  .actions .search i {font-size:1.2rem; cursor:pointer; transition:.3s;}
+  .actions .search i:hover {color:#d32f2f; transform:scale(1.2);}
+  .actions .login {background:#d32f2f; color:white; padding:8px 18px; border-radius:30px; text-decoration:none; font-weight:600; transition:.3s;}
+  .actions .login:hover {background:#ffeb3b; color:#000; transform:translateY(-3px);}
+
+  /* Section */
+  .section {padding:80px 40px; max-width:1000px; margin:auto;}
+  .section h2 {font-size:2.5rem; margin-bottom:40px; color:#d32f2f; font-weight:700; text-align:center; position:relative;}
+  .section h2::after {content:""; display:block; width:80px; height:4px; background:#ffeb3b; margin:10px auto 0; border-radius:2px;}
+
+  .contact-info {display:grid; grid-template-columns:repeat(auto-fit, minmax(250px,1fr)); gap:25px; margin-bottom:50px;}
+  .contact-card {background:white; border-radius:15px; padding:25px; text-align:center; box-shadow:0 6px 20px rgba(0,0,0,0.15); transition:.4s;}
+  .contact-card i {font-size:2.5rem; margin-bottom:15px; color:#d32f2f;}
+  .contact-card h3 {font-size:1.2rem; margin-bottom:10px; color:#000;}
+  .contact-card p {font-size:.95rem; color:#555; line-height:1.5;}
+
+  .contact-form {background:white; padding:30px; border-radius:15px; box-shadow:0 6px 25px rgba(0,0,0,0.15); margin-bottom:50px;}
+  .contact-form input, .contact-form textarea {width:100%; padding:12px 15px; margin-bottom:20px; border-radius:8px; border:1px solid #ccc; font-size:1rem;}
+  .contact-form button {background:#d32f2f; color:white; padding:12px 25px; border:none; border-radius:30px; font-size:1rem; font-weight:600; cursor:pointer; transition:.3s;}
+  .contact-form button:hover {background:#ffeb3b; color:#000;}
+  .feedback {text-align:center; font-weight:600; margin-bottom:20px;}
+
+  /* Footer */
+  footer {background:#111; color:white; text-align:center; padding:30px 20px; font-size:.9rem;}
+  footer span {color:#ffeb3b;}
+  .socials {margin-top:10px;}
+  .socials a {color:white; margin:0 10px; font-size:1.2rem; transition:.3s;}
+  .socials a:hover {color:#ffeb3b;}
+</style>
+</head>
+<body>
+
+<!-- Navbar -->
+<nav id="navbar">
+  <div class="logo"><img src="https://via.placeholder.com/40" alt="logo"> SMKN 2 Bandung</div>
+  <ul>
+    <li><a href="index.html">Beranda</a></li>
+    <li><a href="about.html">Tentang</a></li>
+    <li><a href="news.html">Berita</a></li>
+    <li><a href="contact.html">Kontak</a></li>
+  </ul>
+  <div class="actions">
+    <div class="search"><i class="fas fa-search"></i></div>
+    <a href="#" class="login">Login</a>
+    <div class="menu-toggle"><i class="fas fa-bars"></i></div>
+  </div>
+</nav>
+
+<!-- Contact Section -->
+<div class="section">
+  <h2>Kontak Kami</h2>
+
+  <!-- Info Cards -->
+  <div class="contact-info">
+    <div class="contact-card">
+      <i class="fas fa-map-marker-alt"></i>
+      <h3>Alamat</h3>
+      <p>Jl. Ciliwung No 4, Bandung, Jawa Barat, Indonesia</p>
+    </div>
+    <div class="contact-card">
+      <i class="fas fa-phone"></i>
+      <h3>Telepon</h3>
+      <p>+62 22 1234567</p>
+    </div>
+    <div class="contact-card">
+      <i class="fas fa-envelope"></i>
+      <h3>Email</h3>
+      <p>info@smkn2bandung.sch.id</p>
+    </div>
+  </div>
+
+  <!-- Contact Form -->
+  <div class="contact-form">
+    <div id="feedback" class="feedback" style="display:none;"></div>
+    <form id="contactForm">
+      <input type="text" name="nama" placeholder="Nama Lengkap" required>
+      <input type="email" name="email" placeholder="Email" required>
+      <textarea name="pesan" rows="6" placeholder="Pesan" required></textarea>
+      <button type="submit">Kirim Pesan</button>
+    </form>
+  </div>
+</div>
+
+<!-- Footer -->
+<footer id="kontak">
+  <p>&copy; 2025 <span>SMKN 2 Bandung</span> | Semua Hak Dilindungi</p>
+  <div class="socials">
+    <a href="https://www.tiktok.com/@smkn2bandung?_t=ZS-8zIUlJ3EBiX&_r=1"><i class="fab fa-tiktok"></i></a>
+    <a href="https://www.instagram.com/smkn2bandung?utm_source=ig_web_button_share_sheet&igsh=cnVuOWdxeHZlejNo"><i class="fab fa-instagram"></i></a>
+  </div>
+</footer>
+
+<script>
+  // Navbar scroll effect
+  const nav = document.getElementById('navbar');
+  window.addEventListener('scroll', () => {
+    nav.classList.toggle('scrolled', window.scrollY > 50);
+  });
+
+  // Responsive navbar
+  const menuToggle = document.querySelector('.menu-toggle');
+  const navLinks = document.querySelector('nav ul');
+  menuToggle.addEventListener('click', () => navLinks.classList.toggle('active'));
+
+  // AJAX / Fetch Contact Form
+  const form = document.getElementById('contactForm');
+  const feedback = document.getElementById('feedback');
+
+  form.addEventListener('submit', async (e) => {
+    e.preventDefault();
+    feedback.style.display = 'block';
+    feedback.style.color = '#000';
+    feedback.textContent = 'Mengirim...';
+
+    const formData = new FormData(form);
+
+    try {
+      const res = await fetch('/contact', {
+        method: 'POST',
+        body: new URLSearchParams(formData)
+      });
+
+      if(res.ok){
+        feedback.style.color = 'green';
+        feedback.textContent = 'Pesan berhasil dikirim!';
+        form.reset();
+      } else {
+        feedback.style.color = 'red';
+        feedback.textContent = 'Gagal mengirim pesan. Silakan coba lagi.';
+      }
+    } catch (err) {
+      feedback.style.color = 'red';
+      feedback.textContent = 'Terjadi kesalahan. Silakan coba lagi.';
+      console.error(err);
+    }
+  });
+</script>
+
+</body>
+</html>

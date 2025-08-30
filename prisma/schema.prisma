@@ -1,0 +1,31 @@
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+model User {
+  id       Int     @id @default(autoincrement())
+  username String  @unique
+  password String
+  role     String  @default("user")
+}
+
+model Berita {
+  id        Int      @id @default(autoincrement())
+  judul     String
+  konten    String
+  tanggal   DateTime @default(now())
+}
+
+model Kontak {
+  id      Int    @id @default(autoincrement())
+  nama    String
+  email   String
+  pesan   String
+  jawaban String?
+  tanggal DateTime @default(now())
+}

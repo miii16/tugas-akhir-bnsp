@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Kegiatan - SMKN 2 Bandung</title>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+<style>
+  * {margin:0; padding:0; box-sizing:border-box; font-family:'Poppins', sans-serif;}
+  body {background:#fdfdfd; color:#222; scroll-behavior:smooth;}
+  
+  nav {background:#fff; box-shadow:0 3px 10px rgba(0,0,0,0.08); padding:15px 40px; display:flex; justify-content:space-between; align-items:center; position:sticky; top:0; z-index:1000; transition:.3s;}
+  nav.scrolled {background:#d32f2f; color:white;}
+  nav .logo {display:flex; align-items:center; gap:10px; font-size:1.3rem; font-weight:700; color:#d32f2f; transition:.3s;}
+  nav.scrolled .logo {color:white;}
+  nav ul {list-style:none; display:flex; gap:25px;}
+  nav ul li a {text-decoration:none; color:#222; font-weight:500; transition:.3s; position:relative;}
+  nav ul li a::after {content:""; position:absolute; width:0; height:2px; left:0; bottom:-5px; background:#ffeb3b; transition:.3s;}
+  nav ul li a:hover {color:#d32f2f;}
+  nav ul li a:hover::after {width:100%;}
+  nav.scrolled ul li a {color:white;}
+  nav.scrolled ul li a:hover {color:#ffeb3b;}
+  .menu-toggle {display:none; font-size:1.5rem; cursor:pointer;}
+  @media(max-width:768px){nav ul{display:none; flex-direction:column; position:absolute; top:70px; right:0; background:#fff; width:200px; box-shadow:0 5px 15px rgba(0,0,0,0.2); padding:20px;} nav ul.active{display:flex;} nav ul li{margin:10px 0;} .menu-toggle{display:block;}}
+  
+  .section {padding:60px 20px; max-width:1000px; margin:0 auto;}
+  .section h2 {text-align:center; font-size:2rem; margin-bottom:40px; color:#d32f2f;}
+  .card {background:white; padding:20px; margin-bottom:20px; border-radius:10px; box-shadow:0 5px 15px rgba(0,0,0,0.1);}
+  .card h3 {color:#d32f2f; margin-bottom:10px;}
+  .card p {line-height:1.5;}
+  
+  footer {background:#111; color:white; text-align:center; padding:30px 20px; margin-top:40px; font-size:.9rem;}
+  footer span{color:#ffeb3b;}
+</style>
+</head>
+<body>
+
+<!-- Navbar -->
+<nav id="navbar">
+  <div class="logo"><i class="fas fa-school"></i> SMKN 2 Bandung</div>
+  <ul>
+    <li><a href="index.html">Beranda</a></li>
+    <li><a href="about.html">Tentang</a></li>
+    <li><a href="news.html">Berita</a></li>
+    <li><a href="activities.html">Kegiatan</a></li>
+    <li><a href="contact.html">Kontak</a></li>
+  </ul>
+  <div class="actions">
+    <div class="search"><i class="fas fa-search"></i></div>
+    <a href="login.html" class="login">Login</a>
+        <a href="regist.html" class="login">regist</a>
+
+    <div class="menu-toggle"><i class="fas fa-bars"></i></div>
+  </div>
+</nav>
+
+<!-- Kegiatan Section -->
+<div class="section">
+  <h2>Daftar Kegiatan</h2>
+  
+  <div class="card">
+    <h3>Workshop Coding React</h3>
+    <p>Tanggal: 10 Agustus 2025</p>
+    <p>Deskripsi: Peserta belajar membuat aplikasi web interaktif menggunakan React JS dan Tailwind CSS.</p>
+  </div>
+
+  <div class="card">
+    <h3>Lomba Futsal Antar Kelas</h3>
+    <p>Tanggal: 15 Agustus 2025</p>
+    <p>Deskripsi: Kompetisi futsal antar kelas untuk meningkatkan kerja sama dan semangat olahraga siswa.</p>
+  </div>
+
+  <div class="card">
+    <h3>Seminar Pendidikan Karakter</h3>
+    <p>Tanggal: 20 Agustus 2025</p>
+    <p>Deskripsi: Menghadirkan pembicara dari Disdik Jabar untuk membahas pentingnya penguatan karakter siswa.</p>
+  </div>
+</div>
+
+<!-- Footer -->
+<footer>
+  &copy; 2025 <span>SMKN 2 Bandung</span> | Semua Hak Dilindungi
+</footer>
+
+<script>
+  const nav = document.getElementById('navbar');
+  window.addEventListener('scroll', () => {
+    if(window.scrollY > 50){ nav.classList.add('scrolled'); } 
+    else { nav.classList.remove('scrolled'); }
+  });
+
+  const menuToggle = document.querySelector('.menu-toggle');
+  const navLinks = document.querySelector('nav ul');
+  menuToggle.addEventListener('click', () => { navLinks.classList.toggle('active'); });
+</script>
+</body>
+</html>

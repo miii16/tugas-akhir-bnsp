@@ -1,0 +1,32 @@
+{
+  "name": "school-website",
+  "version": "1.0.0",
+  "description": "School website with Express backend and Prisma as ORM",
+  "main": "index.js",
+  "scripts": {
+    "dev": "node index.js",
+    "start": "node index.js",
+    "prisma:generate": "prisma generate",
+    "prisma:migrate": "prisma migrate dev --name init",
+    "prisma:studio": "prisma studio"
+  },
+  "author": "Hilmyy",
+  "license": "ISC",
+  "dependencies": {
+    "@prisma/client": "^6.15.0",
+    "@shadcn/ui": "^0.0.4",
+    "@tailwindcss/forms": "^0.5.10",
+    "bcrypt": "^6.0.0",
+    "body-parser": "^2.2.0",
+    "cors": "^2.8.5",
+    "express": "^5.1.0",
+    "express-session": "^1.18.2",
+    "lucide-react": "^0.542.0",
+    "tailwindcss": "^4.1.12"
+  },
+  "devDependencies": {
+    "nodemon": "^3.1.0",
+    "prisma": "^6.15.0"
+  },
+  "keywords": []
+}
